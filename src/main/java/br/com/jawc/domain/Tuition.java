@@ -21,10 +21,10 @@ public class Tuition {
     @Column(name= "code", length = 10, nullable = false, unique = true)
     private String code;
 
-    @Column(name= "price")
+    @Column(name= "price", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
 
