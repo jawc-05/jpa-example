@@ -4,7 +4,9 @@
 package br.com.jawc;
 
 import br.com.jawc.dao.CourseDao;
+import br.com.jawc.dao.StudentDao;
 import br.com.jawc.dao.interfaces.ICourseDao;
+import br.com.jawc.dao.interfaces.IStudentDao;
 import br.com.jawc.dao.interfaces.ITuitionDao;
 import br.com.jawc.dao.TuitionDao;
 import br.com.jawc.domain.Course;
@@ -18,6 +20,7 @@ import java.time.Instant;
 
 public class TuitionTest {
 
+    private IStudentDao studentDao;
     private ICourseDao courseDao;
     private ITuitionDao dao;
 
@@ -25,6 +28,7 @@ public class TuitionTest {
     public TuitionTest() {
         dao = new TuitionDao();
         courseDao = new CourseDao();
+        studentDao = new StudentDao();
     }
 
     @Test
