@@ -22,6 +22,12 @@ public class Tuition {
                 referencedColumnName = "id", nullable = false)
     private Course course;
 
+    @OneToOne
+    @JoinColumn(name = "id_student_fk",
+                foreignKey = @ForeignKey(name = "fk_student_tuition"),
+                referencedColumnName = "id", nullable = false)
+    private Student student;
+
     @Column(name = "data_tuition",  nullable = false)
     private Instant dataTuition;
 
@@ -81,5 +87,13 @@ public class Tuition {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }
