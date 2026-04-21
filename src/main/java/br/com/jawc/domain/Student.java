@@ -6,6 +6,7 @@ package br.com.jawc.domain;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_student")
@@ -24,6 +25,13 @@ public class Student {
 
     @OneToOne(mappedBy = "student")
     private Tuition tuition;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "tb_student_computer",
+            joinColumns = {@JoinColumn(name = "id_student_fk")},
+            inverseJoinColumns = {@JoinColumn(name = "id_computer_fk")})
+    private List<Computer> computers;
 
     public Long getId() {
         return id;
@@ -55,5 +63,13 @@ public class Student {
 
     public void setTuition(Tuition tuition) {
         this.tuition = tuition;
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
     }
 }
