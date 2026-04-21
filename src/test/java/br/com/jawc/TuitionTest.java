@@ -8,6 +8,7 @@ import br.com.jawc.dao.interfaces.ICourseDao;
 import br.com.jawc.dao.interfaces.ITuitionDao;
 import br.com.jawc.dao.TuitionDao;
 import br.com.jawc.domain.Course;
+import br.com.jawc.domain.Student;
 import br.com.jawc.domain.Tuition;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,10 +29,11 @@ public class TuitionTest {
 
     @Test
     public void saveTest(){
-        Course course = createCourse("A2");
+        Course course = createCourse("C1");
+        Student student = createStudent("S1");
 
         Tuition tuition = new Tuition();
-        tuition.setCode("A2");
+        tuition.setCode("T1");
         tuition.setPrice(new BigDecimal("500.00"));
         tuition.setDataTuition(Instant.now());
         tuition.setStatus("ATIVA");
@@ -48,5 +50,12 @@ public class TuitionTest {
         course.setDescription("asdkjhKdskjhadkhs");
         course.setName("Java");
         return courseDao.save(course);
+    }
+
+    private Student createStudent(String code){
+        Student student = new Student();
+        student.setCode(code);
+        student.setName("Jawc");
+        return student;
     }
 }
