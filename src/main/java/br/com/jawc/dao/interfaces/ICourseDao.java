@@ -1,7 +1,7 @@
 /**
  * @author jawc
  */
-package br.com.jawc.dao;
+package br.com.jawc.dao.interfaces;
 
 import br.com.jawc.domain.Course;
 

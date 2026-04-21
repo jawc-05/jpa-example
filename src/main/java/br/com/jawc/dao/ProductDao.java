@@ -3,6 +3,7 @@
  */
 package br.com.jawc.dao;
 
+import br.com.jawc.dao.interfaces.IProductDao;
 import br.com.jawc.domain.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

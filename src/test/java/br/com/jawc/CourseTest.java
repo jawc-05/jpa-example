@@ -4,7 +4,7 @@
 package br.com.jawc;
 
 import br.com.jawc.dao.CourseDao;
-import br.com.jawc.dao.ICourseDao;
+import br.com.jawc.dao.interfaces.ICourseDao;
 import br.com.jawc.domain.Course;
 import org.junit.Test;
 

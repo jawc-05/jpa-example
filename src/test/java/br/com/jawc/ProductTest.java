@@ -3,9 +3,8 @@
  */
 package br.com.jawc;
 
-import br.com.jawc.dao.IProductDao;
+import br.com.jawc.dao.interfaces.IProductDao;
 import br.com.jawc.dao.ProductDao;
-import br.com.jawc.dao.TuitionDao;
 import br.com.jawc.domain.Product;
 import org.junit.Assert;
 import org.junit.Test;

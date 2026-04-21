@@ -3,7 +3,7 @@
  */
 package br.com.jawc;
 
-import br.com.jawc.dao.ITuitionDao;
+import br.com.jawc.dao.interfaces.ITuitionDao;
 import br.com.jawc.dao.TuitionDao;
 import br.com.jawc.domain.Tuition;
 import org.junit.Assert;

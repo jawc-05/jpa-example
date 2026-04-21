@@ -3,6 +3,7 @@
  */
 package br.com.jawc.dao;
 
+import br.com.jawc.dao.interfaces.ICourseDao;
 import br.com.jawc.domain.Course;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
