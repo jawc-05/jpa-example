@@ -42,6 +42,8 @@ public class TuitionTest {
         tuition.setDataTuition(Instant.now());
         tuition.setStatus("ATIVA");
         tuition.setCourse(course);
+        tuition.setStudent(student);
+        student.setTuition(tuition);
         tuition = dao.save(tuition);
 
         Assert.assertNotNull(tuition);
@@ -60,6 +62,6 @@ public class TuitionTest {
         Student student = new Student();
         student.setCode(code);
         student.setName("Jawc");
-        return student;
+        return studentDao.save(student);
     }
 }
