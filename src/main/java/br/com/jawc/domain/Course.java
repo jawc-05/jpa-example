@@ -5,6 +5,8 @@ package br.com.jawc.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_course")
 public class Course {
@@ -13,6 +15,9 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq")
     @SequenceGenerator(name="course_sq", sequenceName = "sq_course", initialValue = 1, allocationSize = 1)
     private Long id;
+
+    @OneToMany(mappedBy = "course")
+    private List<Tuition> tuitions;
 
     @Column(name = "code", length = 10, nullable = false,  unique = true)
     private String code;
@@ -53,5 +58,13 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Tuition> getTuitions() {
+        return tuitions;
+    }
+
+    public void setTuitions(List<Tuition> tuitions) {
+        this.tuitions = tuitions;
     }
 }

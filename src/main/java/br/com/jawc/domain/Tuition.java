@@ -16,6 +16,12 @@ public class Tuition {
     @SequenceGenerator(name="tuition_sq", sequenceName = "sq_tuition", initialValue = 1, allocationSize = 1)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_course_fk",
+                foreignKey = @ForeignKey(name = "fk_course_tuition"),
+                referencedColumnName = "id", nullable = false)
+    private Course course;
+
     @Column(name = "data_tuition",  nullable = false)
     private Instant dataTuition;
 
@@ -67,5 +73,13 @@ public class Tuition {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }
