@@ -3,12 +3,15 @@
  */
 package br.com.jawc;
 
+import br.com.jawc.dao.ComputerDao;
 import br.com.jawc.dao.CourseDao;
 import br.com.jawc.dao.StudentDao;
+import br.com.jawc.dao.interfaces.IComputerDao;
 import br.com.jawc.dao.interfaces.ICourseDao;
 import br.com.jawc.dao.interfaces.IStudentDao;
 import br.com.jawc.dao.interfaces.ITuitionDao;
 import br.com.jawc.dao.TuitionDao;
+import br.com.jawc.domain.Computer;
 import br.com.jawc.domain.Course;
 import br.com.jawc.domain.Student;
 import br.com.jawc.domain.Tuition;
@@ -22,19 +25,22 @@ public class TuitionTest {
 
     private IStudentDao studentDao;
     private ICourseDao courseDao;
-    private ITuitionDao dao;
+    private ITuitionDao tuitionDao;
+    private IComputerDao computerDao;
 
 
     public TuitionTest() {
-        dao = new TuitionDao();
+        tuitionDao = new TuitionDao();
         courseDao = new CourseDao();
         studentDao = new StudentDao();
+        computerDao = new ComputerDao();
     }
 
     @Test
     public void saveTest(){
         Course course = createCourse("C1");
         Student student = createStudent("S1");
+
 
         Tuition tuition = new Tuition();
         tuition.setCode("T1");
@@ -44,7 +50,7 @@ public class TuitionTest {
         tuition.setCourse(course);
         tuition.setStudent(student);
         student.setTuition(tuition);
-        tuition = dao.save(tuition);
+        tuition = tuitionDao.save(tuition);
 
         Assert.assertNotNull(tuition);
         Assert.assertNotNull(tuition.getId());
@@ -59,9 +65,23 @@ public class TuitionTest {
     }
 
     private Student createStudent(String code){
+        Computer computer = createComputer("Comp1");
+        Computer computer2 = createComputer("Comp2");
+
         Student student = new Student();
+
         student.setCode(code);
         student.setName("Jawc");
-        return studentDao.save(student);
+
+        student.addComputer(computer);
+        student.addComputer(computer2);
+        return studentDao.save(student) ;
+    }
+
+    private Computer createComputer(String code){
+        Computer computer = new Computer();
+        computer.setCode(code);
+        computer.setDescription("MACBOOK AIR M4");
+        return computer;
     }
 }

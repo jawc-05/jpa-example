@@ -6,6 +6,7 @@ package br.com.jawc.domain;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,6 +33,10 @@ public class Student {
             joinColumns = {@JoinColumn(name = "id_student_fk")},
             inverseJoinColumns = {@JoinColumn(name = "id_computer_fk")})
     private List<Computer> computers;
+
+    public Student() {
+        this.computers = new ArrayList<Computer>();
+    }
 
     public Long getId() {
         return id;
@@ -71,5 +76,9 @@ public class Student {
 
     public void setComputers(List<Computer> computers) {
         this.computers = computers;
+    }
+
+    public void addComputer(Computer computer){
+        this.computers.add(computer);
     }
 }
