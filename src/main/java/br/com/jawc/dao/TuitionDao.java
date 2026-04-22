@@ -4,6 +4,7 @@
 package br.com.jawc.dao;
 
 import br.com.jawc.dao.interfaces.ITuitionDao;
+import br.com.jawc.domain.Course;
 import br.com.jawc.domain.Tuition;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -45,6 +46,29 @@ public class TuitionDao implements ITuitionDao {
         TypedQuery<Tuition> query =
                 entityManager.createQuery(sb.toString(), Tuition.class);
         query.setParameter("codeCourse", codeCourse);
+        Tuition tuition = query.getSingleResult();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return tuition;
+    }
+
+    @Override
+    public Tuition searchByCourse(Course course) {
+        EntityManagerFactory entityManagerFactory =
+                Persistence.createEntityManagerFactory("ExampleJPA");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT t FROM Tuition t ");
+        sb.append("INNER JOIN Course c on c = t.course ");
+        sb.append("WHERE c = :course ");
+
+        entityManager.getTransaction().begin();
+        TypedQuery<Tuition> query =
+                entityManager.createQuery(sb.toString(), Tuition.class);
+        query.setParameter("course", course);
         Tuition tuition = query.getSingleResult();
 
         entityManager.close();
