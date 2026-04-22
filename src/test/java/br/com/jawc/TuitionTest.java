@@ -58,6 +58,10 @@ public class TuitionTest {
         Tuition tuitiondb = tuitionDao.searchByCodeCourse(tuition.getCode());
         Assert.assertNotNull(tuitiondb);
         Assert.assertEquals(tuitiondb.getId(), tuition.getId());
+
+        Tuition tuitionObj = tuitionDao.searchByCourse(course);
+        Assert.assertNotNull(tuitionObj);
+        Assert.assertEquals(tuitionObj.getId(), tuition.getId());
     }
 
     private Course createCourse(String code){
