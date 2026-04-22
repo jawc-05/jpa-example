@@ -43,7 +43,7 @@ public class TuitionTest {
 
 
         Tuition tuition = new Tuition();
-        tuition.setCode("T1");
+        tuition.setCode("C1");
         tuition.setPrice(new BigDecimal("500.00"));
         tuition.setDataTuition(Instant.now());
         tuition.setStatus("ATIVA");
@@ -54,6 +54,10 @@ public class TuitionTest {
 
         Assert.assertNotNull(tuition);
         Assert.assertNotNull(tuition.getId());
+
+        Tuition tuitiondb = tuitionDao.searchByCodeCourse(tuition.getCode());
+        Assert.assertNotNull(tuitiondb);
+        Assert.assertEquals(tuitiondb.getId(), tuition.getId());
     }
 
     private Course createCourse(String code){
