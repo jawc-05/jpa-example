@@ -8,4 +8,5 @@ import br.com.jawc.domain.Tuition;
 public interface  ITuitionDao {
 
     Tuition save(Tuition tuition);
+    Tuition searchByCodeCourse(String codeCourse);
 }
